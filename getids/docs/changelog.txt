@@ -1,0 +1,4 @@
+Changelog file for GetIds component.
+
+GetIds 1.0
+
