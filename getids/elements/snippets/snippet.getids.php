@@ -41,23 +41,23 @@ $ids = array_map('trim',$ids);
 $resIds = array();
 
 foreach ($ids as $id) {
-    if (intval($id)) {  // specified without any prefix
-        $id = ($id > 0) ? "+n".abs($id) : "-n".abs($id);
+    if (intval($id) || $id==='0' ) {  // specified without any prefix
+        $id = ($id >= 0) ? "+n".abs($id) : "-n".abs($id);
     }
     $len = strlen($id);
     $digit1 = substr( $id, 0, 1); // p,n or c
     $str = substr($id,1,strlen($id)-1);
 
     if ($len >= 3){
-        if (intval($str)) $id = '+' . $digit1 . abs($str);
+        if (intval($str) || $str==='0') $id = '+' . $digit1 . abs($str);
         else if ($digit1 != '+' && $digit1 != '-') $id = substr($id,1,1) . $digit1 . substr($id,2,strlen($id)-2);
     }
     else if ($len == 2) {
-        if (intval($str)) $id = '+' . $digit1 . $str;
+        if (intval($str) || $str==='0') $id = '+' . $digit1 . $str;
         else $id = '';
     }
     else if ($len == 1){
-        if (intval($str)) $id = '+' . 'n' . $id;
+        if (intval($str) || $str==='0') $id = '+' . 'n' . $id;
         else $id = '';
     }
 
